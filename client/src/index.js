@@ -1,14 +1,13 @@
-import React from 'react';
-import {render} from 'react-dom';
-import './index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { render } from "react-dom";
+import "./index.scss";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 render(
+  <App />,
 
-    <App />,
-
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 reportWebVitals();

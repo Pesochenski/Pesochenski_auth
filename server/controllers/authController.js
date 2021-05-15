@@ -2,6 +2,7 @@ const Role = require("../models/Role");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
 const { key } = require("../config");
 
 function createAccessToken(_id, roles) {
@@ -59,12 +60,12 @@ class Controller {
       if (!userFind) {
         res.status(400).json({ message: "Sorry, user nor found" });
       }
-      const validPassword = bcrypt.compareSync(password, user.password);
+      const validPassword = bcrypt.compareSync(password, userFind.password);
       if (!validPassword) {
         res.status(400).json({ message: "Sorry, wrong password" });
       }
 
-      const jwt = createAccessToken(user._id, user.roles);
+      const jwt = createAccessToken(userFind._id, userFind.roles);
       res.json({ jwt });
     } catch (err) {
       console.log(err);
@@ -74,7 +75,8 @@ class Controller {
 
   async getUsers(req, res) {
     try {
-      res.json("works");
+      const siteUsers = User.find();
+      res.json({ siteUsers });
     } catch (err) {
       console.log(err);
     }
