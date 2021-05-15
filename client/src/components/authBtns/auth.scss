@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+
+%btnsBasics {
+  outline: none;
+  border: 1px solid black;
+  background: none;
+  color: black;
+  width: 200px;
+  height: 60px;
+  transition: 0.3s;
+  border-radius: 15px;
+  letter-spacing: 0.05em;
+  font: {
+    family: "Poppins";
+    weight: 300;
+    size: 18px;
+  }
+
+  &:hover {
+    color: white;
+    background-color: black;
+  }
+}
+
+.btns {
+  margin: auto;
+
+  &_sign-in {
+    @extend %btnsBasics;
+  }
+  &_sign-up {
+    margin-left: 20px;
+    margin-top: 20px;
+    @extend %btnsBasics;
+  }
+}
