@@ -4,13 +4,13 @@
 
 ### Description
 
-Here is the simple mechanism of authorization created for showing my skills in working with server. If it's rather well, it can be used as authorization mechanics template with access token.
+Here is the simple mechanism of authorization created for showing my skills in working with server. If it will be rather well, it can be used as simple authorization mechanics template with access token.
 
-I used JavaSript here because I don't see reasons for writing any types here. Yup was used for registration form validation and axios - for requests. Also I check data on backend server and use custom messages for explanation a problem for person. After successfull registration you need to sign in. If login comes successfully, I get token from server and put it in localStorage for using it in future for getting any data for user.
+I used JavaSript here because I don't see reasons for writing any types here. Yup was used for registration form validation, and axios - for requests. Also, I check data on backend server and use original messages for explanation a problem for person. After successful registration you need to sign in. If login comes successfully, I get token from server and put it in localStorage for using it in future for getting any data for user.
 
 ### Installing
 
-You need to use `git clone` command and then write this commands for both of two folders:
+You need to use `git clone` command and then write this command for both of two folders:
 
     npm install
 
@@ -22,4 +22,4 @@ After installing all dependencies start project with this command for each folde
 
     npm start
 
-On MongoDB server I added public IP success, that means that you can successfully start this server on any computer and have access to collection with users. I hope it works.
+On MongoDB server I added public IP access, it means that you can successfully start this server on any computer and have access to collection with users. I hope it works.
