@@ -26,12 +26,12 @@ class Controller {
       const candidateEmail = await User.findOne({ email });
 
       if (candidateName) {
-        res
+        return res
           .status(400)
           .json({ message: "Sorry, user with such name already exists" });
       }
       if (candidateEmail) {
-        res
+        return res
           .status(400)
           .json({ message: "Sorry, user with such Email already exists" });
       }
@@ -46,10 +46,12 @@ class Controller {
         roles: [userRole.value],
       });
       await user.save();
-      return res.json({ message: "You was successfully registred" });
+      return res.json({
+        message: "You was successfully registred, login please",
+      });
     } catch (err) {
       console.log(err);
-      req.status(400).json({ message: "Registration error" });
+      return req.status(400).json({ message: "Registration error" });
     }
   }
 
@@ -58,25 +60,25 @@ class Controller {
       const { name, password } = req.body;
       const userFind = await User.findOne({ name });
       if (!userFind) {
-        res.status(400).json({ message: "Sorry, user nor found" });
+        return res.status(400).json({ message: "Sorry, user nor found" });
       }
       const validPassword = bcrypt.compareSync(password, userFind.password);
       if (!validPassword) {
-        res.status(400).json({ message: "Sorry, wrong password" });
+        return res.status(400).json({ message: "Sorry, wrong password" });
       }
 
       const jwt = createAccessToken(userFind._id, userFind.roles);
-      res.json({ jwt });
+      return res.json({ jwt });
     } catch (err) {
       console.log(err);
-      req.status(400).json({ message: "Login error" });
+      return req.status(400).json({ message: "Login error" });
     }
   }
 
   async getUsers(req, res) {
     try {
       const siteUsers = User.find();
-      res.json({ siteUsers });
+      return res.json({ siteUsers });
     } catch (err) {
       console.log(err);
     }

@@ -4,7 +4,7 @@ const User = new Schema({
   name: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   email: { type: String, unique: true, required: true },
-  role: { type: String, ref: "Role" },
+  roles: [{ type: String, ref: "Role" }],
 });
 
 module.exports = model("User", User);

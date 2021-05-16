@@ -12,18 +12,83 @@
   &__window {
     display: flex;
     margin: auto;
-    border-radius: 10px;
-    width: 500px;
-    height: 500px;
+    border-radius: 15px;
+    width: 400px;
+    min-height: 400px;
+    background-color: white;
+    flex-direction: column;
+    padding-bottom: 20px;
   }
 
   &__title {
-    margin: 30px auto;
+    margin: 40px auto;
     letter-spacing: 0.05em;
     font: {
-      family: 'Poppins';
+      family: "Poppins";
       weight: 400;
-      size: 20px;
+      size: 24px;
+    }
+  }
+
+  &__form {
+    margin: 5px auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    margin-top: 8px;
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 15px;
+    transition: 0.3s;
+    letter-spacing: 0.05em;
+    font: {
+      family: "Poppins";
+      weight: 300;
+      size: 14px;
+    }
+
+    &:focus {
+      border: 1px solid black;
+    }
+  }
+
+  &__submit-btn {
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    height: 50px;
+    border-radius: 15px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    background: none;
+    transition: 0.3s;
+    letter-spacing: 0.05em;
+    font: {
+      family: "Poppins";
+      weight: 300;
+      size: 18px;
+    }
+
+    &:hover {
+      color: white;
+      background-color: black;
+    }
+  }
+
+  &__error {
+    margin-top: 20px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    font: {
+      family: "Poppins";
+      weight: 300;
+      size: 14px;
     }
   }
 }
