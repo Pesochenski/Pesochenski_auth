@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./registermodal.scss";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { registerShema } from "../../../validation";
 
 export default function RegisterModal({ setRegister, setRegisterSuccess }) {
   const { register, handleSubmit } = useForm();
@@ -19,14 +20,23 @@ export default function RegisterModal({ setRegister, setRegisterSuccess }) {
   async function onSubmit(d = {}, event) {
     try {
       event.preventDefault();
-      const { name, email, password } = d;
-      const { data } = await axios.post("http://localhost:5000/auth/register", {
-        name,
-        password,
-        email,
-      });
-      setRegister(false);
-      setRegisterSuccess(data.message);
+      const regValid = await registerShema.isValid(d);
+      await registerShema.validate(d).catch((err) => setError(err.message));
+      if (regValid) {
+        const { name, email, password } = d;
+        const { data } = await axios.post(
+          "http://localhost:5000/auth/register",
+          {
+            name,
+            password,
+            email,
+          }
+        );
+        setRegister(false);
+        setRegisterSuccess(data.message);
+      } // else {
+      //  setError("Check your fields please");
+      // }
     } catch (err) {
       setError(err.response.data.message);
     }

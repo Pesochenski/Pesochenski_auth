@@ -7,32 +7,46 @@ export default function Authorization() {
   const [auth, setAuth] = useState(false);
   const [register, setRegister] = useState(false);
   const [registerSuccess, setRegisterSuccess] = useState(null);
+  const [logged, setLogged] = useState(false);
   useEffect(() => {
     closeSuccess();
   }, [registerSuccess]);
 
   function closeSuccess() {
-    setTimeout(() => setRegisterSuccess(null), 5000);
+    if (registerSuccess) {
+      setTimeout(() => setRegisterSuccess(null), 5000);
+    }
   }
 
   return (
     <>
       <div className="auth">
-        <div className="auth_btns">
-          <button className="auth_sign-in" onClick={() => setAuth(true)}>
-            Sign in
-          </button>
-          <button className="auth_sign-up" onClick={() => setRegister(true)}>
-            Sign up
-          </button>
-        </div>
+        {!logged ? (
+          <>
+            <div className="auth_btns">
+              <button className="auth_sign-in" onClick={() => setAuth(true)}>
+                Sign in
+              </button>
+              <button
+                className="auth_sign-up"
+                onClick={() => setRegister(true)}
+              >
+                Sign up
+              </button>
+            </div>
 
-        {registerSuccess ? (
-          <p className="register-success">{registerSuccess}</p>
-        ) : null}
+            {registerSuccess ? (
+              <p className="auth__register-success">{registerSuccess}</p>
+            ) : null}
+          </>
+        ) : (
+          <button onClick={() => setLogged(false)} className="auth__logout">
+            Logout
+          </button>
+        )}
       </div>
 
-      {auth && <AuthModal setAuth={setAuth} />}
+      {auth && <AuthModal setAuth={setAuth} setLogged={setLogged} />}
       {register && (
         <RegisterModal
           setRegister={setRegister}

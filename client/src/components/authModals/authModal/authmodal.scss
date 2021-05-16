@@ -14,9 +14,10 @@
     margin: auto;
     border-radius: 15px;
     width: 400px;
-    height: 300px;
+    min-height: 300px;
     background-color: white;
     flex-direction: column;
+    padding-bottom: 20px;
   }
 
   &__title {
@@ -79,6 +80,17 @@
     &:hover {
       color: white;
       background-color: black;
+    }
+  }
+
+  &__error {
+    margin-top: 20px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    font: {
+      family: "Poppins";
+      weight: 300;
+      size: 14px;
     }
   }
 }

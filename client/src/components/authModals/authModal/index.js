@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./authmodal.scss";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
-export default function AuthModal({ setAuth }) {
+export default function AuthModal({ setAuth, setLogged }) {
   const { register, handleSubmit } = useForm();
+  const [loginError, setLoginError] = useState(null);
+  useEffect(() => {
+    closeLoginError();
+  }, [loginError]);
+
+  function closeLoginError() {
+    setTimeout(() => setLoginError(null), 5000);
+  }
+
   async function onSubmit(d, event) {
     try {
       event.preventDefault();
@@ -13,10 +22,11 @@ export default function AuthModal({ setAuth }) {
         name,
         password,
       });
-      console.log(data.jwt);
+      localStorage.setItem("jwt", data.jwt);
       setAuth(false);
+      setLogged(true);
     } catch (err) {
-      console.log(err.response.data.message);
+      setLoginError(err.response.data.message);
     }
   }
 
@@ -40,6 +50,10 @@ export default function AuthModal({ setAuth }) {
               {...register(`${item.register}`)}
             />
           ))}
+          {loginError ? (
+            <p className="auth-modal__error">{loginError}</p>
+          ) : null}
+
           <button type="submit" className="auth-modal__submit-btn">
             Sign in
           </button>

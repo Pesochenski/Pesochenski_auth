@@ -36,15 +36,19 @@
     margin-top: 20px;
     @extend %btnsBasics;
   }
-}
 
-.register-success {
-  margin-top: 50px;
-  letter-spacing: 0.05em;
-  text-align: center;
-  font: {
-    family: "Poppins";
-    size: 20px;
-    weight: 400;
+  &__logout {
+    @extend %btnsBasics;
+  }
+
+  &__register-success {
+    margin-top: 50px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    font: {
+      family: "Poppins";
+      size: 20px;
+      weight: 400;
+    }
   }
 }

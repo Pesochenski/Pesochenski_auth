@@ -10,7 +10,8 @@ function createAccessToken(_id, roles) {
     _id,
     roles,
   };
-  return jwt.token(payload, key, { expiresIn: "12h" });
+  const token = jwt.sign(payload, key, { expiresIn: "12h" });
+  return token;
 }
 
 class Controller {
